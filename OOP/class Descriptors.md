@@ -4,9 +4,9 @@ In other words, a class can delegate the management of an attribute to another c
 
 The descriptor classes are based on three special methods that form the descriptor
 protocol. 
-1. _set_()
-2. _get_()
-3. _delete_()
+ 1. _set_()
+ 2. _get_()
+ 3. _delete_()
 
 A descriptor that implements _get_() and _set_() is called a data descriptor. 
 if it just implements _get_(), then it is called a non-data descriptor. 
