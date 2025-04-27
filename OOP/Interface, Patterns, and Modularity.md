@@ -71,8 +71,36 @@ the zope.interface package is still one of the main components of the still popu
 python features ABCs so we will start from it and later see how it compares to other interface solutions. 
 
 The interface concept works best for areas where a single abstraction can have multiple implementations or can be applied to 
-different objects that probably shouldnot be tangled with inheritance structure.  
+different objects that probably should not be tangled with inheritance structure.  
 
+itertools.combinations(iterable,r ): Return r length subsequences of elements from the input iterable.  
+The output is a subsequence of product() keeping only entries that are subsequences of the iterable. the length of the output 
+is given by math.com() which computes n!/r!/(n-r)! when r<=  n or zero when r>n
+The combination tuples are emitted in lexicographic order according to the order of the input iterable. if the input iterable
+is sorted, the output tuples will be produced is sorted order. 
+Elements are treated as unique based on the position, not on their value. if the input elements are uniquem there will be no
+repeated values within each combination.  
+
+The common convention for Zope is to prefix interface class with I. The Attribute constructor denotes the desired attribute 
+of the objects implementing the interface. Any method defined in the interface class will be used as an interface method 
+declaration.  Those methods should be empty. the common convention is to use only the docstring of the method body. 
+
+When you have such an interface defined, you must denote which of your concrete classes implement that interface.  
+this style of interface implementation is called explict interfaces and is similar in nature to traits in Java. 
+In order to denote the implementation of a specific interface. you need to use the implementer() class decorator.  
+
+It is common to say that the interface defines a contract that a concrete implementation needs to fulfil. 
+the main benefit of  this design pattern is being able to verify consistency between contract and implementation before 
+the object is used. With the ordinary duck-type approach,  you only find inconsistencies when there is a missing attribute 
+or method at runtime.  
+
+With zope.interface, you can introspect the actual implementation using two methods from zope.interface.verify module to find 
+inconsistency early on: 
+1. verifyClass(interface, class_object): This verifies the class object for the existence of methods and correctness of their
+signatures without looking for attributes. 
+2. verifyObject(interface, instance): This verifies the methods, their signatures, and also attributes of the actual object instace.
+
+### Using function annotations and abstract base classes
 
 
 
