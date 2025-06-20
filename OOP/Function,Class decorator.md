@@ -96,4 +96,48 @@ func = decorator(params)(func) , 第一步： 先调用decorator(params)，返�
 为什么需要三层结构呢： 1， 最外层接收装饰器参数， 2， 中阶层处理被装饰函数， 3， 最内层处理实际调用逻辑
 
 
+### Function Decorator的典型使用场景
+1. 日志记录：
+2. 性能计时
+3. 权限验证
+4. 缓存
+5. 重试机制
 
+### 不足：
+1. 调试困难：装饰器会改变函数名和调用栈，可能使调试复杂化
+2. 性能开销：每层装饰器都会增加一个函数调用层
+3. 元数据丢失：需要手动使用 functools.wraps 保留原函数元数据
+4. 理解曲线：对新手来说，理解装饰器的执行顺序和工作原理可能有难度
+
+
+Flask (Web 框架)
+@app.route - 定义路由
+@app.before_request - 请求前处理
+@app.errorhandler - 错误处理
+
+Django (Web 框架)
+@login_required - 登录验证
+@permission_required - 权限检查
+@csrf_exempt - CSRF 保护豁免
+
+Click (命令行工具)
+@click.command - 定义命令
+@click.option - 添加选项
+@click.argument - 添加参数
+
+Pytest (测试框架)
+@pytest.fixture - 定义测试夹具
+@pytest.mark.parametrize - 参数化测试
+@pytest.mark.skip - 跳过测试
+
+Functools (标准库)
+@lru_cache - 函数结果缓存
+@total_ordering - 自动生成比较方法
+@singledispatch - 函数重载
+
+Celery (分布式任务队列)
+@app.task - 定义异步任务
+@task_prerun.connect - 任务执行前信号
+
+Dataclasses (标准库)
+@dataclass - 自动生成特殊方法
